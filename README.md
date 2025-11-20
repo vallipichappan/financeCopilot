@@ -37,32 +37,71 @@ Credits for the original inspiration: [Syed Hasan’s MCP walkthrough](https://m
 
 ## Local setup (uv MCP → Claude Desktop)
 
-### 1. Install requirements
+### Prerequisites
 
-```powershell
-Python 3.11
+- **Python 3.11+** (required by `pyproject.toml`)
+- **uv** (Python package manager)
+
+### Step 1: Install uv
+
+Install `uv` using pip:
+
+```bash
 pip install uv
 ```
 
-Clone the repo and install dependencies with uv:
+**Finding uv's location:**
 
-```powershell
-git clone https://github.com/vallipichappan/financeCopilot.git
+After installation, find where `uv` is installed:
+
+- **Windows (PowerShell):**
+  ```powershell
+  (Get-Command uv).Source
+  ```
+  Common locations: `C:\Users\<YourUsername>\.local\bin\uv.EXE` or `C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python311\Scripts\uv.exe`
+
+- **macOS/Linux:**
+  ```bash
+  which uv
+  ```
+  Common locations: `~/.local/bin/uv` or `/usr/local/bin/uv`
+
+**Note:** If `uv` is not in your PATH, you may need to add it:
+- Windows: Add the directory containing `uv.EXE` to your system PATH
+- macOS/Linux: Add `~/.local/bin` to your PATH in `~/.bashrc` or `~/.zshrc`
+
+### Step 2: Clone and install dependencies
+
+```bash
+git clone -b dev https://github.com/vallipichappan/financeCopilot.git
 cd financeCopilot
 uv sync
-# `uv sync` reads `pyproject.toml` and pulls `mcp[cli]`, `yfinance`, `requests` 
 ```
 
+The `uv sync` command automatically reads `pyproject.toml` and installs all base dependencies:
+- `mcp[cli]` - Model Context Protocol CLI
+- `yfinance` - Yahoo Finance API client
+- `httpx` - HTTP client library
+- `python-dateutil` - Date utilities
 
-### 2. Attach to Claude Desktop
+**Note:** Additional runtime dependencies (pandas, requests, python-dotenv, etc.) are specified in the server files and will be installed automatically when the servers run via `uv run --with`.
 
-Edit `%APPDATA%\Claude\claude_desktop_config.json` (on Windows; use `~/Library/Application Support/Claude` on macOS) and add both servers:
+### Step 3: Configure Claude Desktop
+
+1. **Locate Claude Desktop config file:**
+   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+   - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Linux:** `~/.config/Claude/claude_desktop_config.json`
+
+2. **Edit the config file** and add both MCP servers. Replace the placeholders:
+   - `<PATH_TO_UV>` - Use the path you found in Step 1 (e.g., `C:\Users\YourUsername\.local\bin\uv.EXE` on Windows)
+   - `<PATH_TO_REPO>` - Full path to your cloned repository (e.g., `C:\Users\YourUsername\financeCopilot` on Windows)
 
 ```json
 {
   "mcpServers": {
     "FinancialResearchServer": {
-      "command": "C:\\Users\\valli\\.local\\bin\\uv.EXE",
+      "command": "<PATH_TO_UV>",
       "args": [
         "run",
         "--with", "mcp[cli]",
@@ -72,14 +111,11 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json` (on Windows; use `~/Library/A
         "--with", "python-dotenv",
         "mcp",
         "run",
-        "C:\\Users\\valli\\financeCopilot\\financial_mcp_server.py"
-      ],
-      "env": {
-        "SEC_USER_AGENT": "Your Name or Company YourEmail@example.com"
-      }
+        "<PATH_TO_REPO>\\financial_mcp_server.py"
+      ]
     },
     "QuantAssistant": {
-      "command": "C:\\Users\\valli\\.local\\bin\\uv.EXE",
+      "command": "<PATH_TO_UV>",
       "args": [
         "run",
         "--with", "mcp[cli]",
@@ -89,14 +125,20 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json` (on Windows; use `~/Library/A
         "--with", "yfinance",
         "mcp",
         "run",
-        "C:\\Users\\valli\\financeCopilot\\finance_server.py"
+        "<PATH_TO_REPO>\\finance_server.py"
       ]
     }
   }
 }
 ```
 
-Restart Claude Desktop. The “FinancialResearchServer” and “QuantAssistant” entries will appear in the MCP. Enable any of the tools available in chat. For QuantAssistant, env variables need to be set up. 
+**Important notes:**
+- Use forward slashes `/` on macOS/Linux, or double backslashes `\\` on Windows for paths
+- The `--with` flags ensure additional dependencies are available at runtime (these complement `pyproject.toml`)
+
+3. **Restart Claude Desktop** to load the new configuration.
+
+4. **Verify setup:** After restarting, you should see "FinancialResearchServer" and "QuantAssistant" in Claude Desktop's MCP panel. Enable the tools you want to use in chat. 
 
 ---
 
@@ -113,7 +155,7 @@ Restart Claude Desktop. The “FinancialResearchServer” and “QuantAssistant�
 
 ## Output Links
 
-- [Report 1](https://claude.ai/share/9e5fac93-b9b8-4455-b83e-50a5508fb41a)
-- [Report 2](https://claude.ai/share/0193e817-540a-4cc6-8d54-caf4df29fc92)
-- [Report 3](https://claude.ai/share/e0a6d949-b817-411a-ae37-cf1fd557f2d0)
-- [Report 4](https://claude.ai/share/09ae70d4-2da9-400d-aa50-d8ff7f20f3b0)
+- [Tesla vs Ford P/E](https://claude.ai/share/9e5fac93-b9b8-4455-b83e-50a5508fb41a)
+- [Microsoft earnings report analysis](https://claude.ai/share/0193e817-540a-4cc6-8d54-caf4df29fc92)
+- [Semiconductor sector info](https://claude.ai/share/e0a6d949-b817-411a-ae37-cf1fd557f2d0)
+- [Tempus AI Risk Assessment](https://claude.ai/share/09ae70d4-2da9-400d-aa50-d8ff7f20f3b0)
