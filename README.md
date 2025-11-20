@@ -101,11 +101,19 @@ Restart Claude Desktop. The “FinancialResearchServer” and “QuantAssistant�
 ---
 
 ## Roadmap / ideas
-else mcp + langchain for memory and conversation capabilities + web search api + llm connect
-follow proper 3 - tier structure for 
-swap it out with finbert
+- Instead of using claude desktop, it could be integrated with langchain for memory and conversation capabilities + web search api + llm connect
+- App Development has to follow proper 3 tier structure 
+- Swap Claude out with finbert
 - More technical indicators & signal generation.
 - Portfolio and risk analytics blocks.
 - Natural-language query hub with RAG over filings.
-- Visualization stories (intraday dashboards, thematics).
+- Visualisation stories (intraday dashboards, thematics).
 
+---
+
+## Output Links
+
+- [Report 1](https://claude.ai/share/9e5fac93-b9b8-4455-b83e-50a5508fb41a)
+- [Report 2](https://claude.ai/share/0193e817-540a-4cc6-8d54-caf4df29fc92)
+- [Report 3](https://claude.ai/share/e0a6d949-b817-411a-ae37-cf1fd557f2d0)
+- [Report 4](https://claude.ai/share/09ae70d4-2da9-400d-aa50-d8ff7f20f3b0)
