@@ -142,6 +142,11 @@ The `uv sync` command automatically reads `pyproject.toml` and installs all base
 
 ![Claude Desktop MCP Panel](files/Claude%20Desktop.png)
 
+5. **Ignore Warnings on Claude Desktop:** DO ignore any warnings as such, the tool would still work. 
+
+![Claude Desktop MCP Panel](files/ignore.png)
+
+
 ---
 
 ## Roadmap / ideas
