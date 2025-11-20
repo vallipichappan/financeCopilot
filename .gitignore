@@ -5,7 +5,6 @@ dist/
 wheels/
 *.egg-info
 notes.txt
-quant_server.py
 
 .env
 .venv

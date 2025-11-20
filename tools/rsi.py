@@ -28,7 +28,7 @@ def calculate_rsi(symbol: str, period: int = 14) -> Dict[str, Any]:
     
     data = market_data_cache[cache_key].data.copy()
     
-    # Calculate price changes
+
     delta = data['close'].diff()
     
     # Create gain and loss series
