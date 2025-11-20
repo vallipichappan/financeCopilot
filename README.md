@@ -161,3 +161,4 @@ The `uv sync` command automatically reads `pyproject.toml` and installs all base
 - [Microsoft earnings report analysis](https://claude.ai/share/0193e817-540a-4cc6-8d54-caf4df29fc92)
 - [Semiconductor sector info](https://claude.ai/share/e0a6d949-b817-411a-ae37-cf1fd557f2d0)
 - [Tempus AI Risk Assessment](https://claude.ai/share/09ae70d4-2da9-400d-aa50-d8ff7f20f3b0)
+- [FAANG PE Rations](https://claude.ai/share/26296bc7-c906-42ef-a165-a705f70bc6db)
