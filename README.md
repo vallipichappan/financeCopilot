@@ -138,7 +138,9 @@ The `uv sync` command automatically reads `pyproject.toml` and installs all base
 
 3. **Restart Claude Desktop** to load the new configuration.
 
-4. **Verify setup:** After restarting, you should see "FinancialResearchServer" and "QuantAssistant" in Claude Desktop's MCP panel. Enable the tools you want to use in chat. 
+4. **Verify setup:** After restarting, you should see "FinancialResearchServer" and "QuantAssistant" in Claude Desktop's MCP panel. Enable the tools you want to use in chat.
+
+![Claude Desktop MCP Panel](files/Claude%20Desktop.png)
 
 ---
 
